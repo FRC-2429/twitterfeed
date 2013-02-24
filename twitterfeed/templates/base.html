@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+
+    <meta charset="utf-8" />
+    <title> {% block title %}{% endblock %} </title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='normalize.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='base.css') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+
+</head>
+<body>
+
+    <header>
+        <h1>
+            LCEC Twitter Proccesor
+        </h1>
+    </header>
+    <nav>
+        <ul>
+            <li>
+                <a href="{{ url_for('teaminfo') }}">
+                    Team Info
+                </a>
+            </li>
+            <li>
+                <a>
+                    Regional Info
+                </a>
+            </li>
+            <li>
+                <a>
+                    Fancy Formulas
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+
+        @ 2013 La Canada Engineering Club 
+
+    </footer>
+
+</body>
+</html>
