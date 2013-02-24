@@ -40,7 +40,7 @@ def getWholeTimeline(screen_name,since_id):
 
 
 	while len(result) != 0:
-		output.append( (item['text'],item['id']) for item in result)
+		output.extend( (item['text'],item['id']) for item in result)
 		for item in result:
 			print item['text'], item['id']
 		minId = min(item['id'] for item in result)

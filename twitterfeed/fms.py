@@ -10,13 +10,13 @@ import string
 import psycopg2
 
 
-def clasifyTweet(tweet):
+def classifyTweet(tweet):
 	resultArr = tweet.split()
 	out = {}
 	
 	for index,elem in enumerate(resultArr):
 		if index==0:
-			out['Location'] = elem
+			out['EVENT'] = elem
 		elif all(c in string.uppercase for c in elem):
 			if elem == "RA" or elem == "BA":
 				out[elem] = [int(num) for num in resultArr[index+1:index+4]]
@@ -36,9 +36,51 @@ def clasifyTweet(tweet):
 
 
 
+def addTeam(conn,curs,year,name):
+	curs.execute("SELECT id FROM events WHERE year = %s AND name = %s;", (year,name) )
+	eventResult = curs.fetchone()
+	if eventResult:
+		return eventResult[0]
 
-def proccessTweets(last_id_recieved):
-	newTweets = twitter.getWholeTimeline(screen_name='frcfms',last_id_recieved=last_id_recieved)
+	print "Inserted event"
+	curs.execute("INSERT INTO events (year,name) VALUES (%s,%s) RETURNING id;", (year,name))
+	return curs.fetchone()[0]
+
+
+def processTweets(last_id_recieved=294893974513123328):
+	newTweets = twitter.getWholeTimeline(screen_name='frcfms',since_id=last_id_recieved)
+
+	print newTweets
+
+	with closing(database.getConnection()) as conn:
+			with closing(conn.cursor()) as curs:
+
+				for newTweet,tweetId in newTweets:
+					newData = classifyTweet(newTweet)
+					print(newData)
+					
+
+					eventId = addTeam(conn,curs,newData['YEAR'],newData['EVENT'])
+
+					for team in (newData["RA"] + newData["BA"]):
+						curs.execute("SELECT id from teams WHERE team_number = %s;", (team,))
+						teamResult = curs.fetchone()
+						if not teamResult:
+							print "Inserted team"
+							curs.execute("INSERT INTO teams (team_number) VALUES (%s) RETURNING id;",(team,))
+							teamResult = curs.fetchone()
+
+						teamId = teamResult[0]
+
+						curs.execute("SELECT id FROM event_team_relationships WHERE event_id = %s AND team_id = %s;", (eventId,teamId))
+						if not curs.fetchone():
+							print "Inserting relation"
+							curs.execute("INSERT INTO event_team_relationships (event_id,team_id) VALUES (%s,%s);", (eventId,teamId))
+
+				conn.commit()
+
+		
+
 
 
 def checkForUpdates():
@@ -55,7 +97,7 @@ def checkForUpdates():
 				else:
 
 					print "Ready for update"
-					curs.execute("UPDATE statustable SET currently_being_modified = TRUE")
+					curs.execute("UPDATE statustable SET currently_being_modified = TRUE;")
 					conn.commit()
 					print "Transaction sucess"
 
