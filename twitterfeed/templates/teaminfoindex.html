@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %} Index {% endblock %}
+{% block content %}
+	<h2>
+		Request information for a specific team:
+	</h2>
+		
+		<br/>
+		<form action="{{ url_for('teaminfo_dispatcher') }}">
+			<label for="Team-Number">Team Number: </label>
+			<input id="Team-Number" name="teamnumber" type="number"/>
+			<br/>
+			<input type="submit" value="Go" />
+
+
+		</form>
+	
+{% endblock %}

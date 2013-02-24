@@ -8,6 +8,9 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='base.css') }}" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
 
+    {% block head %}
+    {% endblock %}
+
 </head>
 <body>
 
@@ -19,7 +22,11 @@
     <nav>
         <ul>
             <li>
-                <a href="{{ url_for('teaminfo') }}">
+                <a href="{{ url_for('index') }} ">
+                    Home
+                </a>
+            <li>
+                <a href="{{ url_for('teaminfoindex') }}">
                     Team Info
                 </a>
             </li>
@@ -36,13 +43,11 @@
         </ul>
     </nav>
 
-    {% block content %}{% endblock %}
+    
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
 
-    <footer>
-
-        @ 2013 La Canada Engineering Club 
-
-    </footer>
 
 </body>
 </html>

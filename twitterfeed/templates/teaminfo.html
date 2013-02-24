@@ -1,8 +1,36 @@
 {% extends "base.html" %}
 
-{% block title %} Index {% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='teaminfo.css') }}" />
+{% endblock %}
+
+{% block title %} Team Information {% endblock %}
 {% block content %}
 	<h2>
-		Welcome to team info
+		Information all about {{teamnumber}}.
+		Get it while it's hot.
 	</h2>
+
+	Regionals participated in: 
+
+	<ul id="regionalList">
+	{% for regional in regionals %}
+	<li> {{regional}} </li>
+	{% endfor %}
+	</ul>
+
+	Average score: 2
+	<br>
+	Top score: 1
+	<br>
+	Score distribution
+	<br>
+	strstarstrst
+
+
+
+
+		
+		
+	
 {% endblock %}

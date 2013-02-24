@@ -1,0 +1,156 @@
+[
+    {
+        "user": {
+            "follow_request_sent": false,
+            "profile_use_background_image": true,
+            "default_profile_image": false,
+            "id": 20603824,
+            "verified": false,
+            "profile_text_color": "666666",
+            "profile_image_url_https": "https://si0.twimg.com/profile_images/77824407/4FX_LOGO_bw_normal.jpg",
+            "profile_sidebar_fill_color": "FFFFFF",
+            "entities": {
+                "description": {
+                    "urls": []
+                }
+            },
+            "followers_count": 468,
+            "profile_sidebar_border_color": "000000",
+            "id_str": "20603824",
+            "profile_background_color": "FFFFFF",
+            "listed_count": 14,
+            "profile_background_image_url_https": "https://si0.twimg.com/profile_background_images/4442941/4FX_LOGO_bw.jpg",
+            "utc_offset": -18000,
+            "statuses_count": 29812,
+            "description": "http://www.usfirst.org",
+            "friends_count": 1,
+            "location": "Manchester, NH",
+            "profile_link_color": "2FC2EF",
+            "profile_image_url": "http://a0.twimg.com/profile_images/77824407/4FX_LOGO_bw_normal.jpg",
+            "following": null,
+            "geo_enabled": false,
+            "profile_background_image_url": "http://a0.twimg.com/profile_background_images/4442941/4FX_LOGO_bw.jpg",
+            "screen_name": "frcfms",
+            "lang": "en",
+            "profile_background_tile": false,
+            "favourites_count": 0,
+            "name": "FRC Field System",
+            "notifications": null,
+            "url": null,
+            "created_at": "Wed Feb 11 17:15:28 +0000 2009",
+            "contributors_enabled": false,
+            "time_zone": "Eastern Time (US & Canada)",
+            "protected": false,
+            "default_profile": false,
+            "is_translator": false
+        },
+        "favorited": false,
+        "entities": {
+            "user_mentions": [],
+            "hashtags": [
+                {
+                    "indices": [
+                        0,
+                        8
+                    ],
+                    "text": "FRCDEV1"
+                }
+            ],
+            "urls": []
+        },
+        "contributors": null,
+        "truncated": false,
+        "text": "#FRCDEV1 TY P MC 6 RF 50 BF 179 RA 5 10 8 BA 4 2 3 RC 30 BC 30 RFP 0 BFP 0 RAS 0 BAS 60 RTS 20 BTS 89",
+        "created_at": "Tue Feb 12 15:33:08 +0000 2013",
+        "retweeted": false,
+        "in_reply_to_status_id_str": null,
+        "coordinates": null,
+        "in_reply_to_user_id_str": null,
+        "source": "<a href=\"http://www.usfirst.org\" rel=\"nofollow\">FMS</a>",
+        "in_reply_to_status_id": null,
+        "in_reply_to_screen_name": null,
+        "id_str": "301353252585357312",
+        "place": null,
+        "retweet_count": 0,
+        "geo": null,
+        "id": 301353252585357312,
+        "in_reply_to_user_id": null
+    },
+    {
+        "user": {
+            "follow_request_sent": false,
+            "profile_use_background_image": true,
+            "default_profile_image": false,
+            "id": 20603824,
+            "verified": false,
+            "profile_text_color": "666666",
+            "profile_image_url_https": "https://si0.twimg.com/profile_images/77824407/4FX_LOGO_bw_normal.jpg",
+            "profile_sidebar_fill_color": "FFFFFF",
+            "entities": {
+                "description": {
+                    "urls": []
+                }
+            },
+            "followers_count": 468,
+            "profile_sidebar_border_color": "000000",
+            "id_str": "20603824",
+            "profile_background_color": "FFFFFF",
+            "listed_count": 14,
+            "profile_background_image_url_https": "https://si0.twimg.com/profile_background_images/4442941/4FX_LOGO_bw.jpg",
+            "utc_offset": -18000,
+            "statuses_count": 29812,
+            "description": "http://www.usfirst.org",
+            "friends_count": 1,
+            "location": "Manchester, NH",
+            "profile_link_color": "2FC2EF",
+            "profile_image_url": "http://a0.twimg.com/profile_images/77824407/4FX_LOGO_bw_normal.jpg",
+            "following": null,
+            "geo_enabled": false,
+            "profile_background_image_url": "http://a0.twimg.com/profile_background_images/4442941/4FX_LOGO_bw.jpg",
+            "screen_name": "frcfms",
+            "lang": "en",
+            "profile_background_tile": false,
+            "favourites_count": 0,
+            "name": "FRC Field System",
+            "notifications": null,
+            "url": null,
+            "created_at": "Wed Feb 11 17:15:28 +0000 2009",
+            "contributors_enabled": false,
+            "time_zone": "Eastern Time (US & Canada)",
+            "protected": false,
+            "default_profile": false,
+            "is_translator": false
+        },
+        "favorited": false,
+        "entities": {
+            "user_mentions": [],
+            "hashtags": [
+                {
+                    "indices": [
+                        0,
+                        8
+                    ],
+                    "text": "FRCDEV1"
+                }
+            ],
+            "urls": []
+        },
+        "contributors": null,
+        "truncated": false,
+        "text": "#FRCDEV1 TY P MC 5 RF 189 BF 43 RA 12 1 6 BA 11 9 7 RC 40 BC 30 RFP 0 BFP 0 RAS 72 BAS 6 RTS 77 BTS 7",
+        "created_at": "Tue Feb 12 15:06:58 +0000 2013",
+        "retweeted": false,
+        "in_reply_to_status_id_str": null,
+        "coordinates": null,
+        "in_reply_to_user_id_str": null,
+        "source": "<a href=\"http://www.usfirst.org\" rel=\"nofollow\">FMS</a>",
+        "in_reply_to_status_id": null,
+        "in_reply_to_screen_name": null,
+        "id_str": "301346667653910530",
+        "place": null,
+        "retweet_count": 0,
+        "geo": null,
+        "id": 301346667653910530,
+        "in_reply_to_user_id": null
+    }
+]
