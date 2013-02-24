@@ -36,7 +36,7 @@ def classifyTweet(tweet):
 
 
 
-def addTeam(conn,curs,year,name):
+def addEvent(conn,curs,year,name):
 	curs.execute("SELECT id FROM events WHERE year = %s AND name = %s;", (year,name) )
 	eventResult = curs.fetchone()
 	if eventResult:
@@ -46,6 +46,22 @@ def addTeam(conn,curs,year,name):
 	curs.execute("INSERT INTO events (year,name) VALUES (%s,%s) RETURNING id;", (year,name))
 	return curs.fetchone()[0]
 
+
+def addTeam(conn,curs,eventId,teamNumber):
+	curs.execute("SELECT id from teams WHERE team_number = %s;", (teamNumber,))
+	teamResult = curs.fetchone()
+	if teamResult:
+		return teamResult[0]
+
+	print "Inserted team"
+	curs.execute("INSERT INTO teams (team_number) VALUES (%s) RETURNING id;",(teamNumber,))
+	return curs.fetchone()[0]
+
+def addRelationship(conn,curs,eventId,teamId):
+	curs.execute("SELECT id FROM event_team_relationships WHERE event_id = %s AND team_id = %s;", (eventId,teamId))
+	if not curs.fetchone():
+		print "Inserting relation"
+		curs.execute("INSERT INTO event_team_relationships (event_id,team_id) VALUES (%s,%s);", (eventId,teamId))
 
 def processTweets(last_id_recieved=294893974513123328):
 	newTweets = twitter.getWholeTimeline(screen_name='frcfms',since_id=last_id_recieved)
@@ -57,26 +73,14 @@ def processTweets(last_id_recieved=294893974513123328):
 
 				for newTweet,tweetId in newTweets:
 					newData = classifyTweet(newTweet)
-					print(newData)
-					
+					print(newData)		
 
-					eventId = addTeam(conn,curs,newData['YEAR'],newData['EVENT'])
+					eventId = addEvent(conn,curs,newData['YEAR'],newData['EVENT'])
 
-					for team in (newData["RA"] + newData["BA"]):
-						curs.execute("SELECT id from teams WHERE team_number = %s;", (team,))
-						teamResult = curs.fetchone()
-						if not teamResult:
-							print "Inserted team"
-							curs.execute("INSERT INTO teams (team_number) VALUES (%s) RETURNING id;",(team,))
-							teamResult = curs.fetchone()
-
-						teamId = teamResult[0]
-
-						curs.execute("SELECT id FROM event_team_relationships WHERE event_id = %s AND team_id = %s;", (eventId,teamId))
-						if not curs.fetchone():
-							print "Inserting relation"
-							curs.execute("INSERT INTO event_team_relationships (event_id,team_id) VALUES (%s,%s);", (eventId,teamId))
-
+					for teamNumber in (newData["RA"] + newData["BA"]):
+						teamId = addTeam(conn,curs,eventId,teamNumber)
+						addRelationship(conn,curs,eventId,teamId)
+						
 				conn.commit()
 
 		
