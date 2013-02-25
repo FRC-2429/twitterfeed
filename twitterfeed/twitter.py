@@ -33,6 +33,8 @@ def getTimeline(**kwargs):
 
 	return json.loads(content)
 
+
+
 def getWholeTimeline(screen_name,since_id):
 
 	result = getTimeline(screen_name=screen_name,since_id=since_id)
@@ -45,6 +47,5 @@ def getWholeTimeline(screen_name,since_id):
 			print item['text'], item['id']
 		minId = min(item['id'] for item in result)
 		result = getTimeline(screen_name=screen_name,since_id=since_id,max_id=minId-1)
-
 	return output
 

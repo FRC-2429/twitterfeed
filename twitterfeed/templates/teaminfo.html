@@ -6,31 +6,50 @@
 
 {% block title %} Team Information {% endblock %}
 {% block content %}
-	<h2>
-		Information all about {{teamnumber}}.
-		Get it while it's hot.
-	</h2>
+<h2>
+	Information all about {{teamnumber}}.
+	Get it while it's hot.
+</h2>
 
-	Regionals participated in: 
+Regionals participated in: 
 
-	<ul id="regionalList">
-	{% for regional in regionals %}
-	<li> {{regional}} </li>
-	{% endfor %}
-	</ul>
-
-	Average score: 2
-	<br>
-	Top score: 1
-	<br>
-	Score distribution
-	<br>
-	strstarstrst
-
-
-
-
-		
-		
+<table>
+	<tr>
+		<th>Event Name</th>
+		{% for year in years %}
+		<th> {{year}} </th>
+		{% endfor %}
+	</tr>
 	
+		{% for regional in regionalKeys %}
+		<tr>
+			<td> {{regional}} </td>
+			{% for year in years %}
+
+			{% if regionals[regional][year] %}
+			<td> X </td>
+			{% else %}
+			<td> </td>
+			{% endif %}
+			{% endfor %}
+		</tr>
+		{% endfor %}
+	
+</table>
+
+
+Average score: 2
+<br>
+Top score: 1
+<br>
+Score distribution
+<br>
+strstarstrst
+
+
+
+
+
+
+
 {% endblock %}

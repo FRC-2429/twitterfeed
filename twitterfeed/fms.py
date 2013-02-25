@@ -145,6 +145,20 @@ class FMS(object):
 		self.conn.close()
 
 
+	def getEventsForTeam(self,teamNumber):
+		self.curs.execute("""SELECT year,name FROM event_team_relationships
+			INNER JOIN teams ON teams.id = event_team_relationships.team_id
+			INNER JOIN events ON events.id = event_team_relationships.event_id
+			WHERE teams.team_number= %s
+			""", (teamNumber,))
+		results = self.curs.fetchall()
+		self.conn.commit()
+
+		print results
+
+
+		return [ {'year':result[0], 'event': result[1]} for result in results]
+
 	def checkForUpdates(self):
 
 		if self.claimModificationRights():	
