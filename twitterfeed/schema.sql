@@ -35,3 +35,9 @@ CREATE TABLE event_team_relationships
 	team_id integer REFERENCES teams (id),
 	UNIQUE(event_id,team_id)
 );
+
+CREATE TABLE raw_blueallaince_match
+(
+	key text PRIMARY KEY,
+	data json NOT NULL
+);

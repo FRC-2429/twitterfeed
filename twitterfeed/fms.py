@@ -2,12 +2,16 @@
 
 from . import database
 from . import twitter
+from . import blueallaince
 
 from contextlib import closing
 
 import string
 
 import psycopg2
+
+
+import simplejson as json
 
 
 def classifyTweet(tweet):
@@ -37,11 +41,27 @@ def classifyTweet(tweet):
 	return out
 
 
+def chunks(l,n):
+	return (l[i:i+n] for i in range(0,len(l),n))
+
 class FMS(object):
 
 	def __init__(self):
 		self.conn = database.getConnection()
 		self.curs = self.conn.cursor()
+
+	def addBlueAllainceData(self):
+		regionalList = blueallaince.getRegionalsForYear(2012)
+		matchList = (match for regional in regionalList for match in blueallaince.getMatchesForRegional(regional))
+		
+		matches =  (match for chunk in chunks(list(matchList),100) for match in blueallaince.getDetailsForMatches(chunk))
+
+		for m in matches:
+			self.curs.execute("INSERT INTO raw_blueallaince_match (key,data) VALUES (%s,%s);", (m["key"],json.dumps(m)))
+
+		self.conn.commit()
+
+
 
 
 	def addEvent(self,year,name):
